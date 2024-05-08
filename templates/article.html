@@ -1,0 +1,14 @@
+{{ template "header.html". }}
+
+<div class="p-16">
+  <h1
+    class="mb-4 text-3xl font-extrabold text-black-900 dark:text-black md:text-5xl lg:text-6xl"
+  >
+    {{.payload.Title}}
+  </h1>
+  <p class="text-lg font-normal text-black lg:text-xl dark:text-black-400">
+    {{ .payload.Content}}
+  </p>
+</div>
+
+{{ template "footer.html". }}
