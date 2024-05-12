@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -11,7 +10,10 @@ import (
 )
 
 func ShowIndexPage(c *gin.Context) {
-	articles := models.GetAllArticles()
+	articles, err := models.GetAllArticles()
+	if err != nil {
+		log.Fatalf("Error get all articles: %v", err)
+	}
 
 	// Call the HTML method of the Context to render a template
 	c.HTML(
@@ -21,7 +23,7 @@ func ShowIndexPage(c *gin.Context) {
 		"index.html",
 		// Pass the data that the page uses
 		gin.H{
-			"title":   "Home Page",
+			"title":   "Article Manager",
 			"payload": articles,
 		},
 	)
@@ -29,17 +31,27 @@ func ShowIndexPage(c *gin.Context) {
 
 func ShowArticle(c *gin.Context) {
 	param := c.Param("article_id")
-	strParam, err := strconv.Atoi(param)
+	strParam, err := strconv.ParseInt(param, 10, 64)
 	if err != nil {
 		log.Fatal("Error converting the param to int")
 	}
-	article, log := models.GetArticle(strParam)
-	if log == "" {
-		fmt.Println(article)
-		c.HTML(http.StatusOK, "article.html", gin.H{
-			"payload": article,
+	article, err := models.GetArticle(strParam)
+	if err != nil {
+		c.HTML(http.StatusNotFound, "article.html", gin.H{
+			"payload": article.Title,
 		})
 	} else {
-		c.JSON(http.StatusNotFound, log)
+		c.HTML(http.StatusOK, "article.html", gin.H{
+			"payload": article,
+			"next":    article.ID + 1,
+		})
 	}
+}
+
+func RegisterArticle(c *gin.Context) {
+	err := c.Request.ParseForm()
+	if err != nil {
+		log.Fatalf("Error parsing the form: %v", err)
+	}
+	// get the values from the form and populate them in the db
 }
