@@ -2,12 +2,15 @@ package models
 
 import (
 	"database/sql"
-	"strings"
+	"fmt"
+	"log"
+
+	"github.com/vandit1604/go-article-manager/utils"
 )
 
 var DB *sql.DB
 
-type article struct {
+type Article struct {
 	ID      int64  `json:"id"`
 	Title   string `json:"string"`
 	Content string `json:"content"`
@@ -15,28 +18,33 @@ type article struct {
 }
 
 // TODO: Functionality to add articles to database via the app
-func RegisterArticle() {
+func RegisterArticle(at Article) (int64, error) {
+	result, err := DB.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content, at.Date)
+	if err != nil {
+		log.Fatalf("Error inserting article into database: %v", err)
+	}
+	fmt.Println(result)
+	return 0, nil
 }
 
-func GetAllArticles() ([]article, error) {
+func GetAllArticles() ([]Article, error) {
 	rows, err := DB.Query("SELECT * FROM articles")
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var articles []article
+	var articles []Article
 
 	for rows.Next() {
-		var at article
+		var at Article
 
 		err := rows.Scan(&at.ID, &at.Title, &at.Content, &at.Date)
 		if err != nil {
 			return nil, err
 		}
-		// lil hack to get the date in correct format
-		var temp []string = strings.Split(at.Date, "T")
-		at.Date = temp[0]
+
+		at.Date = utils.FormatDate(at.Date)
 
 		articles = append(articles, at)
 	}
@@ -44,22 +52,21 @@ func GetAllArticles() ([]article, error) {
 	return articles, nil
 }
 
-func GetArticle(ID int64) (article, error) {
+func GetArticle(ID int64) (Article, error) {
 	rows, err := DB.Query("SELECT * FROM articles WHERE ID=$1;", ID)
 	if err != nil {
-		return article{}, err
+		return Article{}, err
 	}
 	defer rows.Close()
-	var at article
+	var at Article
 	for rows.Next() {
 		err := rows.Scan(&at.ID, &at.Title, &at.Content, &at.Date)
 		if err != nil {
-			return article{}, err
+			return Article{}, err
 		}
 	}
-	// lil hack to get the date in correct format
-	var temp []string = strings.Split(at.Date, "T")
-	at.Date = temp[0]
+
+	at.Date = utils.FormatDate(at.Date)
 
 	return at, nil
 }

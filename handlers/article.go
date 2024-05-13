@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -49,9 +50,17 @@ func ShowArticle(c *gin.Context) {
 }
 
 func RegisterArticle(c *gin.Context) {
+	var at models.Article
+
 	err := c.Request.ParseForm()
 	if err != nil {
 		log.Fatalf("Error parsing the form: %v", err)
 	}
-	// get the values from the form and populate them in the db
+
+	at.Title = c.PostForm("title")
+	at.Content = c.PostForm("content")
+
+	id, err := models.RegisterArticle(at)
+	fmt.Println(id)
+	c.HTML(http.StatusOK, "post-article.html", nil)
 }

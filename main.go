@@ -37,7 +37,7 @@ func main() {
 
 	router.GET("/", handlers.ShowIndexPage)
 	router.GET("/article/view/:article_id", handlers.ShowArticle)
-	router.POST("/post-article", handlers.RegisterArticle)
+	router.GET("/post-article", handlers.RegisterArticle)
 
 	router.Run()
 }
