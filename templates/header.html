@@ -2,95 +2,67 @@
 
 <!doctype html>
 <html>
-  <head>
-    <!--Use the title variable to set the title of the page-->
-    <title>{{ .title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="UTF-8" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+<head>
+  <!--Use the title variable to set the title of the page-->
+  <title>{{ .title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
 
-  <body>
-    <header class="py-4 mt-8 md:py-6" x-data="{expanded: false}">
-      <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between">
-          <div class="flex-shrink-0">
-            <a
-              href="/"
-              class="text-xl font-black leading-none text-gray-900 select-none logo"
-              >artiXles<span class="text-indigo-600">.</span></a
-            >
-          </div>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        "light",
+      },
+    };
+  </script>
+</head>
 
-          <div class="flex lg:hidden">
-            <button
-              type="button"
-              class="text-gray-900"
-              @click="expanded = !expanded"
-              :aria-expanded="expanded"
-            >
-              <span x-show="!expanded" aria-hidden="true">
-                <svg
-                  class="w-7 h-7"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </span>
+<body>
+  <header class="py-4 mt-8 md:py-6" x-data="{expanded: false}">
+    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <div class="flex-shrink-0">
+          <a href="/" class="text-xl font-black leading-none text-gray-900 select-none logo">artiXles<span
+              class="text-indigo-600">.</span></a>
+        </div>
 
-              <span x-show="expanded" aria-hidden="true">
-                <svg
-                  class="w-7 h-7"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
+        <div class="flex lg:hidden">
+          <button type="button" class="text-gray-900" @click="expanded = !expanded" :aria-expanded="expanded">
+            <span x-show="!expanded" aria-hidden="true">
+              <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </span>
 
-          <div class="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
-            <a
-              href="https://github.com/Vandit1604/"
-              title=""
-              class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-            >
-              Github
-            </a>
-            <a
-              href="https://twitter.com/vandittweets"
-              title=""
-              class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-            >
-              Twitter
-            </a>
-            <a
-              href="https://www.linkedin.com/in/vandit-singh/"
-              title=""
-              class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-            >
-              LinkedIn
-            </a>
-          </div>
+            <span x-show="expanded" aria-hidden="true">
+              <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
+          <a href="https://github.com/Vandit1604/" title=""
+            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            Github
+          </a>
+          <a href="https://twitter.com/vandittweets" title=""
+            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            Twitter
+          </a>
+          <a href="https://www.linkedin.com/in/vandit-singh/" title=""
+            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            LinkedIn
+          </a>
         </div>
       </div>
-    </header>
-  </body>
+    </div>
+  </header>
+</body>
+
 </html>

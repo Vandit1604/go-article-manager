@@ -49,18 +49,20 @@ func ShowArticle(c *gin.Context) {
 	}
 }
 
+func RegisterArticlePage(c *gin.Context) {
+	c.HTML(http.StatusOK, "post-article.html", nil)
+}
+
 func RegisterArticle(c *gin.Context) {
 	var at models.Article
-
-	err := c.Request.ParseForm()
-	if err != nil {
-		log.Fatalf("Error parsing the form: %v", err)
-	}
-
 	at.Title = c.PostForm("title")
 	at.Content = c.PostForm("content")
 
-	id, err := models.RegisterArticle(at)
-	fmt.Println(id)
-	c.HTML(http.StatusOK, "post-article.html", nil)
+	fmt.Println(at)
+	err := models.RegisterArticle(at)
+	fmt.Println(err)
+	// func to register article inside the DB
+	// RegisterArticleInDB(c.PostForm("title"), c.PostForm("content"))
+
+	c.HTML(http.StatusOK, "article-published.html", nil)
 }

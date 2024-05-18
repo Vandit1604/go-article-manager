@@ -14,17 +14,18 @@ type Article struct {
 	ID      int64  `json:"id"`
 	Title   string `json:"string"`
 	Content string `json:"content"`
-	Date    string `json:"date"`
+	// figure out how to get current date. having problems with the struct
+	Date string `json:"date"`
 }
 
 // TODO: Functionality to add articles to database via the app
-func RegisterArticle(at Article) (int64, error) {
-	result, err := DB.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content, at.Date)
+func RegisterArticle(at Article) error {
+	result, err := DB.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content)
 	if err != nil {
 		log.Fatalf("Error inserting article into database: %v", err)
 	}
 	fmt.Println(result)
-	return 0, nil
+	return nil
 }
 
 func GetAllArticles() ([]Article, error) {

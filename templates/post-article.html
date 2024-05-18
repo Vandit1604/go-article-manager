@@ -1,14 +1,41 @@
-{{ template "header.html". }}
+{{ template "header.html". }} 
+{{ template "hero.html" .}}
 
-<form class="max-w-sm mx-auto">
-  <div class="mb-5">
-    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your title</label>
-    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your title" required />
-  </div>
-  <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content for the Article</label>
-  <textarea id="message" rows="4"
-    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    placeholder="Enter your content here..."></textarea>
-</form>
 
-{{ template "footer.html". }}
+<div class="flex justify-center mt-6">
+  <nav
+    class="flex overflow-x-auto items-center p-1 space-x-1 rtl:space-x-reverse text-sm text-gray-600 bg-gray-500/5 rounded-xl dark:bg-gray-500/20 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E]">
+    <a href="/">
+      <button role="tab" type="button"
+        class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-white focus:ring-inset hover:text-white focus:text-white dark:text-white dark:hover:text-white dark:focus:text-white">
+        Blogs
+      </button>
+    </a>
+    <button role="tab" type="button"
+      class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-white focus:ring-inset text-black shadow bg-white dark:text-black dark:bg-white"
+      aria-selected="">
+      Publish Article
+    </button>
+  </nav>
+</div>
+<section class="mt-12">
+  <form action="/register-article" method="post" class="max-w-sm mx-auto">
+    <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Enter your title</label>
+    <input type="text" name="title"
+      class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-5"
+      placeholder="Your title" required />
+    <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Content for the Article</label>
+    <textarea name="content" rows="12"
+      class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+      required placeholder="Enter your content here..."></textarea>
+    <!-- Submit Button -->
+    <button type="submit" class="mt-4 relative inline-block px-4 py-2 font-medium group">
+      <span
+        class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+      <span class="relative text-black group-hover:text-white">Publish</span>
+    </button>
+  </form>
+</section>
+<!--Embed the footer.html template at this location-->
+{{ template "footer.html" .}}
