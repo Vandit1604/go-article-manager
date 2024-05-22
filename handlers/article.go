@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -58,9 +57,10 @@ func RegisterArticle(c *gin.Context) {
 	at.Title = c.PostForm("title")
 	at.Content = c.PostForm("content")
 
-	fmt.Println(at)
 	err := models.RegisterArticle(at)
-	fmt.Println(err)
+	if err != nil {
+		log.Fatalf("Error registering the article: %v", err)
+	}
 	// func to register article inside the DB
 	// RegisterArticleInDB(c.PostForm("title"), c.PostForm("content"))
 

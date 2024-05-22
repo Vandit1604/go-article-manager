@@ -2,13 +2,22 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	"github.com/vandit1604/go-article-manager/utils"
 )
 
-var DB *sql.DB
+var db *sql.DB
+
+func InitDB(dataSourceName string) error {
+	var err error
+	db, err = sql.Open("postgres", dataSourceName)
+	if err != nil {
+		return err
+	}
+
+	return db.Ping()
+}
 
 type Article struct {
 	ID      int64  `json:"id"`
@@ -20,16 +29,15 @@ type Article struct {
 
 // TODO: Functionality to add articles to database via the app
 func RegisterArticle(at Article) error {
-	result, err := DB.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content)
+	_, err := db.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content)
 	if err != nil {
 		log.Fatalf("Error inserting article into database: %v", err)
 	}
-	fmt.Println(result)
 	return nil
 }
 
 func GetAllArticles() ([]Article, error) {
-	rows, err := DB.Query("SELECT * FROM articles")
+	rows, err := db.Query("SELECT * FROM articles")
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +62,7 @@ func GetAllArticles() ([]Article, error) {
 }
 
 func GetArticle(ID int64) (Article, error) {
-	rows, err := DB.Query("SELECT * FROM articles WHERE ID=$1;", ID)
+	rows, err := db.Query("SELECT * FROM articles WHERE ID=$1;", ID)
 	if err != nil {
 		return Article{}, err
 	}

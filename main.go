@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 
 	"github.com/vandit1604/go-article-manager/models"
@@ -19,9 +18,7 @@ func init() {
 		dbname   = "article-manager"
 	)
 
-	var err error
-
-	models.DB, err = sql.Open("postgres", "postgres://postgres:mypassword@localhost/article-manager?sslmode=disable")
+	err := models.InitDB("postgres://postgres:mypassword@localhost/article-manager?sslmode=disable")
 	if err != nil {
 		log.Fatalf("error creating the DB: %v", err)
 	}
