@@ -9,6 +9,10 @@ import (
 	"github.com/vandit1604/go-article-manager/models"
 )
 
+func ShowNotFoundPage(c *gin.Context) {
+	c.HTML(http.StatusNotFound, "404.html", nil)
+}
+
 func ShowIndexPage(c *gin.Context) {
 	articles, err := models.GetAllArticles()
 	if err != nil {

@@ -1,0 +1,39 @@
+{{ template "header.html". }}
+
+<div class="text-center my-24 ">
+  <h1 class="font-heading text-5xl xs:text-6xl md:text-7xl font-bold text-gray-900">
+    <span>New here?</span>
+    <span class="relative inline-flex sm:inline">
+      <span
+        class="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
+      <span class="relative font-serif italic"> Sign Up </span>
+    </span>
+  </h1>
+</div>
+<section class="flex flex-row justify-center items-center">
+  <form action="/signup" method="post" class="w-full max-w-sm mx-auto">
+    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Enter Username</label>
+    <input type="text" name="username"
+      class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-5"
+      placeholder="Your title" required />
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 bold mt-10">Password</label>
+    <input name="password" type="password"
+      class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+      required placeholder="Your Password"></input>
+    <!-- Submit Button -->
+    <button type="submit" class="mt-10 relative inline-block px-4 py-2 font-medium group">
+      <span
+        class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+      <span class="relative text-black group-hover:text-white">Login</span>
+    </button>
+  </form>
+</section>
+
+<div class="text-center mt-16">
+  <span class="inline-block py-1 px-3 mb-4 text-md font-semibold text-purple-900 bg-purple-50 rounded-full">
+    <a href="/login">Already Signed Up? Login ➤ </a>
+  </span>
+</div>
+
+{{ template "footer.html". }}

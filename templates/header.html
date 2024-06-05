@@ -13,7 +13,18 @@
   <script>
     tailwind.config = {
       theme: {
-        "light",
+        extend: {
+          keyframes: {
+            wave: {
+              to: {
+                "margin-left": "-51%",
+              },
+            },
+          },
+        },
+        animation: {
+          wave: "wave 1.5s ease-in-out infinite",
+        },
       },
     };
   </script>
@@ -24,8 +35,13 @@
     <div class="container px-4 mx-auto sm:px-6 lg:px-8">
       <div class="flex items-center justify-between">
         <div class="flex-shrink-0">
-          <a href="/" class="text-xl font-black leading-none text-gray-900 select-none logo">Art1cles<span
-              class="text-indigo-600">.</span></a>
+          <span class="relative inline-flex sm:inline">
+            <span
+              class="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
+            <a href="/"
+              class="relative font-serif italic font-black leading-none text-gray-900 select-none logo text-3xl">articles<span
+                class="text-indigo-600">.</span></a>
+          </span>
         </div>
 
         <div class="flex lg:hidden">
@@ -46,23 +62,21 @@
           </button>
         </div>
 
-        <div class="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
+        <div class=" hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
           <a href="https://github.com/Vandit1604/" title=""
-            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            class="text-base text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 font-serif italic font-bold text-xl">
             Github
           </a>
           <a href="https://twitter.com/vandittweets" title=""
-            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            class="text-base text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 font-serif italic font-bold text-xl">
             Twitter
           </a>
           <a href="https://www.linkedin.com/in/vandit-singh/" title=""
-            class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">
+            class="text-base text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 font-serif italic font-bold text-xl">
             LinkedIn
           </a>
         </div>
       </div>
     </div>
   </header>
-</body>
 
-</html>
