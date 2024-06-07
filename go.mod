@@ -1,6 +1,6 @@
 module github.com/vandit1604/go-article-manager
 
-go 1.21.4
+go 1.22.4
 
 require (
 	github.com/gin-gonic/gin v1.10.0
