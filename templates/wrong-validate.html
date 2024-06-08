@@ -1,0 +1,26 @@
+{{ template "header.html". }}
+
+<meta http-equiv="Refresh" content="2; url='/login'" />
+
+<div class="text-center my-24">
+  <h1
+    class="font-heading text-5xl xs:text-6xl md:text-7xl font-bold text-gray-900"
+  >
+    <span>{{ .greet }}</span>
+    <span class="relative inline-flex sm:inline">
+      <span
+        class="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"
+      ></span>
+      <span class="relative font-serif italic"> {{ .response }} </span>
+    </span>
+  </h1>
+  <div class="text-center my-6">
+    <span
+      class="inline-block py-1 px-3 mb-4 text-md font-semibold text-purple-900 bg-purple-50 rounded-full"
+    >
+      {{ .message }}
+    </span>
+  </div>
+</div>
+
+{{ template "footer.html". }}
