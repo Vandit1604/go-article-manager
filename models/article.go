@@ -27,7 +27,6 @@ type Article struct {
 	Date string `json:"date"`
 }
 
-// TODO: Functionality to add articles to database via the app
 func RegisterArticle(at Article) error {
 	_, err := db.Exec(`INSERT INTO articles (title, content, date) VALUES ($1, $2, CURRENT_TIMESTAMP)`, at.Title, at.Content)
 	if err != nil {

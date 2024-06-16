@@ -1,6 +1,8 @@
 package router
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/vandit1604/go-article-manager/handlers"
 )
@@ -17,10 +19,11 @@ func Run() {
 }
 
 func setUpRoutes(router *gin.Engine) {
-	// TODO: enable serving static files and use image on 404 page
-
+	router.StaticFS("../assets/", http.Dir("assets"))
 	// 404 page
 	router.NoRoute(handlers.ShowNotFoundPage)
+
+	// TODO: use middleware for authentication
 
 	router.GET("/", handlers.ShowIndexPage)
 	router.GET("/article/view/:article_id", handlers.ShowArticle)

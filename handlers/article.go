@@ -14,6 +14,7 @@ func ShowNotFoundPage(c *gin.Context) {
 }
 
 func ShowIndexPage(c *gin.Context) {
+	CheckUserAuthenticated(c)
 	articles, err := models.GetAllArticles()
 	if err != nil {
 		log.Fatalf("Error get all articles: %v", err)
@@ -34,6 +35,8 @@ func ShowIndexPage(c *gin.Context) {
 }
 
 func ShowArticle(c *gin.Context) {
+	CheckUserAuthenticated(c)
+
 	param := c.Param("article_id")
 	strParam, err := strconv.ParseInt(param, 10, 64)
 	if err != nil {
@@ -53,6 +56,7 @@ func ShowArticle(c *gin.Context) {
 }
 
 func RegisterArticlePage(c *gin.Context) {
+	CheckUserAuthenticated(c)
 	c.HTML(http.StatusOK, "post-article.html", nil)
 }
 
