@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -36,6 +37,14 @@ func AuthenticateSignUp(c *gin.Context) {
 
 	userCredentials.Username = c.PostForm("username")
 	userCredentials.Password = c.PostForm("password")
+
+	// TODO: check if username already exists
+	_, alreadyExists := DB[userCredentials.Username]
+	if alreadyExists {
+		fmt.Println(alreadyExists)
+		c.Redirect(http.StatusPermanentRedirect, "/login")
+		return
+	}
 
 	DB[userCredentials.Username] = userCredentials.Password
 
